@@ -137,10 +137,10 @@
                     <button type="submit" class="btn btn-primary">
                         <span>💾</span> Lưu dữ liệu
                     </button>
-                    <button type="button" class="btn btn-secondary" onclick="loadData()">
+                    <button type="button" id="loadDataBtn" class="btn btn-secondary">
                         <span>📂</span> Tải dữ liệu
                     </button>
-                    <button type="button" class="btn btn-danger" onclick="clearForm()">
+                    <button type="button" id="clearFormBtn" class="btn btn-danger">
                         <span>🗑️</span> Xóa form
                     </button>
                 </div>
@@ -162,6 +162,10 @@
         // Load data from localStorage when page loads
         window.addEventListener('DOMContentLoaded', () => {
             loadData();
+            
+            // Add event listeners for buttons
+            document.getElementById('loadDataBtn').addEventListener('click', loadData);
+            document.getElementById('clearFormBtn').addEventListener('click', clearForm);
         });
 
         // Handle form submission
