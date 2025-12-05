@@ -303,105 +303,126 @@
     </div>
 
     <script>
+        // Hardcoded data - cannot be modified
+        const HARDCODED_DATA = {
+            adaptability: "Khá",
+            adaptability_note: "Thích nghi nhanh với môi trường làm việc mới và quy trình của công ty. Chủ động học hỏi các công nghệ đang sử dụng trong dự án (NextJs, Dotnet).",
+            quality: "Khá",
+            quality_note: "Code chạy đúng yêu cầu, đang trong quá trình cải thiện code quality. Tích cực tham gia code review để học hỏi. Cần chú ý hơn về đặt tên và clean code principles.",
+            responsibility: "Khá",
+            responsibility_note: "Hoàn thành các task được giao đúng deadline. Chủ động hỏi khi gặp vấn đề không tự giải quyết được. Báo cáo tiến độ rõ ràng.",
+            communication: "Khá",
+            communication_note: "Giao tiếp với team tốt, hòa đồng với mọi người. Cần tự tin hơn khi trình bày ý kiến.",
+            leadership: "Khá",
+            leadership_note: "",
+            documentation: "Khá",
+            documentation_note: "Đang học cách viết documentation theo chuẩn của team. Có ghi chú lại các kiến thức học được.",
+            negotiation: "Khá",
+            negotiation_note: "Còn hạn chế do ít kinh nghiệm, thường chấp nhận timeline được giao. Cần mạnh dạn hơn trong việc trao đổi về estimate và đưa ra ý kiến khi cần thiết.",
+            english: "Trung bình",
+            english_note: "Cần luyện thêm kỹ năng speaking để tự tin hơn khi giao tiếp.",
+            summary: "Điểm cần cải thiện: kinh nghiệm thực tế, kỹ năng thuyết trình, và tự tin hơn trong giao tiếp.",
+            plan: "Cải thiện về logic, nghiệp vụ",
+            result: "",
+            desire: "Tăng lương",
+            preferredCoworkers: "Muốn làm việc với tất cả mọi người ❤️❤️"
+        };
+
         // Load data from localStorage when page loads
         window.addEventListener('DOMContentLoaded', () => {
-            loadData();
+            loadHardcodedData();
+            disableAllFields();
             
             // Add event listeners for buttons
-            document.getElementById('loadDataBtn').addEventListener('click', loadData);
-            document.getElementById('clearFormBtn').addEventListener('click', clearForm);
+            document.getElementById('loadDataBtn').addEventListener('click', loadHardcodedData);
+            document.getElementById('clearFormBtn').addEventListener('click', showCannotClearMessage);
         });
 
-        // Handle form submission
+        // Handle form submission - show message that data is locked
         document.getElementById('evaluationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const formData = {
-                adaptability_rating: document.querySelector('input[name="adaptability_rating"]:checked')?.value || '',
-                adaptability_note: document.getElementById('adaptability_note').value,
-                quality_rating: document.querySelector('input[name="quality_rating"]:checked')?.value || '',
-                quality_note: document.getElementById('quality_note').value,
-                responsibility_rating: document.querySelector('input[name="responsibility_rating"]:checked')?.value || '',
-                responsibility_note: document.getElementById('responsibility_note').value,
-                communication_rating: document.querySelector('input[name="communication_rating"]:checked')?.value || '',
-                communication_note: document.getElementById('communication_note').value,
-                leadership_rating: document.querySelector('input[name="leadership_rating"]:checked')?.value || '',
-                leadership_note: document.getElementById('leadership_note').value,
-                documentation_rating: document.querySelector('input[name="documentation_rating"]:checked')?.value || '',
-                documentation_note: document.getElementById('documentation_note').value,
-                negotiation_rating: document.querySelector('input[name="negotiation_rating"]:checked')?.value || '',
-                negotiation_note: document.getElementById('negotiation_note').value,
-                english_rating: document.querySelector('input[name="english_rating"]:checked')?.value || '',
-                english_note: document.getElementById('english_note').value,
-                summary: document.getElementById('summary').value,
-                plan: document.getElementById('plan').value,
-                result: document.getElementById('result').value,
-                desire: document.getElementById('desire').value,
-                preferredCoworkers: document.getElementById('preferredCoworkers').value
-            };
-
-            // Save to localStorage
-            localStorage.setItem('evaluationData', JSON.stringify(formData, null, 2));
-            
-            // Display the data
-            displayData(formData);
-            
-            // Show success message
-            alert('Dữ liệu đã được lưu thành công!');
+            alert('Dữ liệu đã được cố định và không thể thay đổi!');
         });
 
         function setRatingValue(fieldName, value) {
             if (value) {
                 const radio = document.querySelector(`input[name="${fieldName}"][value="${value}"]`);
-                if (radio) radio.checked = true;
+                if (radio) {
+                    radio.checked = true;
+                }
             }
         }
 
-        function loadData() {
-            const savedData = localStorage.getItem('evaluationData');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                
-                // Populate rating fields
-                setRatingValue('adaptability_rating', data.adaptability_rating);
-                setRatingValue('quality_rating', data.quality_rating);
-                setRatingValue('responsibility_rating', data.responsibility_rating);
-                setRatingValue('communication_rating', data.communication_rating);
-                setRatingValue('leadership_rating', data.leadership_rating);
-                setRatingValue('documentation_rating', data.documentation_rating);
-                setRatingValue('negotiation_rating', data.negotiation_rating);
-                setRatingValue('english_rating', data.english_rating);
-                
-                // Populate form fields
-                document.getElementById('adaptability_note').value = data.adaptability_note || '';
-                document.getElementById('quality_note').value = data.quality_note || '';
-                document.getElementById('responsibility_note').value = data.responsibility_note || '';
-                document.getElementById('communication_note').value = data.communication_note || '';
-                document.getElementById('leadership_note').value = data.leadership_note || '';
-                document.getElementById('documentation_note').value = data.documentation_note || '';
-                document.getElementById('negotiation_note').value = data.negotiation_note || '';
-                document.getElementById('english_note').value = data.english_note || '';
-                document.getElementById('summary').value = data.summary || '';
-                document.getElementById('plan').value = data.plan || '';
-                document.getElementById('result').value = data.result || '';
-                document.getElementById('desire').value = data.desire || '';
-                document.getElementById('preferredCoworkers').value = data.preferredCoworkers || '';
-                
-                // Display the data
-                displayData(data);
-            }
+        function loadHardcodedData() {
+            // Populate rating fields with hardcoded values
+            setRatingValue('adaptability_rating', HARDCODED_DATA.adaptability);
+            setRatingValue('quality_rating', HARDCODED_DATA.quality);
+            setRatingValue('responsibility_rating', HARDCODED_DATA.responsibility);
+            setRatingValue('communication_rating', HARDCODED_DATA.communication);
+            setRatingValue('leadership_rating', HARDCODED_DATA.leadership);
+            setRatingValue('documentation_rating', HARDCODED_DATA.documentation);
+            setRatingValue('negotiation_rating', HARDCODED_DATA.negotiation);
+            setRatingValue('english_rating', HARDCODED_DATA.english);
+            
+            // Populate form fields with hardcoded values
+            document.getElementById('adaptability_note').value = HARDCODED_DATA.adaptability_note || '';
+            document.getElementById('quality_note').value = HARDCODED_DATA.quality_note || '';
+            document.getElementById('responsibility_note').value = HARDCODED_DATA.responsibility_note || '';
+            document.getElementById('communication_note').value = HARDCODED_DATA.communication_note || '';
+            document.getElementById('leadership_note').value = HARDCODED_DATA.leadership_note || '';
+            document.getElementById('documentation_note').value = HARDCODED_DATA.documentation_note || '';
+            document.getElementById('negotiation_note').value = HARDCODED_DATA.negotiation_note || '';
+            document.getElementById('english_note').value = HARDCODED_DATA.english_note || '';
+            document.getElementById('summary').value = HARDCODED_DATA.summary || '';
+            document.getElementById('plan').value = HARDCODED_DATA.plan || '';
+            document.getElementById('result').value = HARDCODED_DATA.result || '';
+            document.getElementById('desire').value = HARDCODED_DATA.desire || '';
+            document.getElementById('preferredCoworkers').value = HARDCODED_DATA.preferredCoworkers || '';
+            
+            // Display the hardcoded data
+            displayData({
+                adaptability_rating: HARDCODED_DATA.adaptability,
+                adaptability_note: HARDCODED_DATA.adaptability_note,
+                quality_rating: HARDCODED_DATA.quality,
+                quality_note: HARDCODED_DATA.quality_note,
+                responsibility_rating: HARDCODED_DATA.responsibility,
+                responsibility_note: HARDCODED_DATA.responsibility_note,
+                communication_rating: HARDCODED_DATA.communication,
+                communication_note: HARDCODED_DATA.communication_note,
+                leadership_rating: HARDCODED_DATA.leadership,
+                leadership_note: HARDCODED_DATA.leadership_note,
+                documentation_rating: HARDCODED_DATA.documentation,
+                documentation_note: HARDCODED_DATA.documentation_note,
+                negotiation_rating: HARDCODED_DATA.negotiation,
+                negotiation_note: HARDCODED_DATA.negotiation_note,
+                english_rating: HARDCODED_DATA.english,
+                english_note: HARDCODED_DATA.english_note,
+                summary: HARDCODED_DATA.summary,
+                plan: HARDCODED_DATA.plan,
+                result: HARDCODED_DATA.result,
+                desire: HARDCODED_DATA.desire,
+                preferredCoworkers: HARDCODED_DATA.preferredCoworkers
+            });
+        }
+
+        function disableAllFields() {
+            // Disable all radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.disabled = true;
+            });
+            
+            // Disable all textareas
+            document.querySelectorAll('textarea').forEach(textarea => {
+                textarea.disabled = true;
+            });
+        }
+
+        function showCannotClearMessage() {
+            alert('Không thể xóa form vì dữ liệu đã được cố định!');
         }
 
         function displayData(data) {
             document.getElementById('jsonOutput').textContent = JSON.stringify(data, null, 2);
-        }
-
-        function clearForm() {
-            if (confirm('Bạn có chắc muốn xóa toàn bộ form?')) {
-                document.getElementById('evaluationForm').reset();
-                localStorage.removeItem('evaluationData');
-                document.getElementById('jsonOutput').textContent = 'Chưa có dữ liệu';
-            }
         }
     </script>
 </body>
