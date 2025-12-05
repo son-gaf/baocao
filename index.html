@@ -363,32 +363,22 @@
             setRatingValue('english_rating', HARDCODED_DATA.english);
             
             // Populate form fields with hardcoded values
-            document.getElementById('adaptability_note').value = HARDCODED_DATA.adaptability_note || '';
-            document.getElementById('quality_note').value = HARDCODED_DATA.quality_note || '';
-            document.getElementById('responsibility_note').value = HARDCODED_DATA.responsibility_note || '';
-            document.getElementById('communication_note').value = HARDCODED_DATA.communication_note || '';
-            document.getElementById('leadership_note').value = HARDCODED_DATA.leadership_note || '';
-            document.getElementById('documentation_note').value = HARDCODED_DATA.documentation_note || '';
-            document.getElementById('negotiation_note').value = HARDCODED_DATA.negotiation_note || '';
-            document.getElementById('english_note').value = HARDCODED_DATA.english_note || '';
-            document.getElementById('summary').value = HARDCODED_DATA.summary || '';
-            document.getElementById('plan').value = HARDCODED_DATA.plan || '';
-            document.getElementById('result').value = HARDCODED_DATA.result || '';
-            document.getElementById('desire').value = HARDCODED_DATA.desire || '';
-            document.getElementById('preferredCoworkers').value = HARDCODED_DATA.preferredCoworkers || '';
+            document.getElementById('adaptability_note').value = HARDCODED_DATA.adaptability_note;
+            document.getElementById('quality_note').value = HARDCODED_DATA.quality_note;
+            document.getElementById('responsibility_note').value = HARDCODED_DATA.responsibility_note;
+            document.getElementById('communication_note').value = HARDCODED_DATA.communication_note;
+            document.getElementById('leadership_note').value = HARDCODED_DATA.leadership_note;
+            document.getElementById('documentation_note').value = HARDCODED_DATA.documentation_note;
+            document.getElementById('negotiation_note').value = HARDCODED_DATA.negotiation_note;
+            document.getElementById('english_note').value = HARDCODED_DATA.english_note;
+            document.getElementById('summary').value = HARDCODED_DATA.summary;
+            document.getElementById('plan').value = HARDCODED_DATA.plan;
+            document.getElementById('result').value = HARDCODED_DATA.result;
+            document.getElementById('desire').value = HARDCODED_DATA.desire;
+            document.getElementById('preferredCoworkers').value = HARDCODED_DATA.preferredCoworkers;
             
             // Display the hardcoded data
-            displayData({
-                ...HARDCODED_DATA,
-                adaptability_rating: HARDCODED_DATA.adaptability,
-                quality_rating: HARDCODED_DATA.quality,
-                responsibility_rating: HARDCODED_DATA.responsibility,
-                communication_rating: HARDCODED_DATA.communication,
-                leadership_rating: HARDCODED_DATA.leadership,
-                documentation_rating: HARDCODED_DATA.documentation,
-                negotiation_rating: HARDCODED_DATA.negotiation,
-                english_rating: HARDCODED_DATA.english
-            });
+            displayData(HARDCODED_DATA);
         }
 
         function disableAllFields() {
