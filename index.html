@@ -347,9 +347,7 @@
         function setRatingValue(fieldName, value) {
             if (value) {
                 const radio = document.querySelector(`input[name="${fieldName}"][value="${value}"]`);
-                if (radio) {
-                    radio.checked = true;
-                }
+                if (radio) radio.checked = true;
             }
         }
 
