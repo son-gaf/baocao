@@ -350,44 +350,27 @@
             alert('Dữ liệu đã được lưu thành công!');
         });
 
+        function setRatingValue(fieldName, value) {
+            if (value) {
+                const radio = document.querySelector(`input[name="${fieldName}"][value="${value}"]`);
+                if (radio) radio.checked = true;
+            }
+        }
+
         function loadData() {
             const savedData = localStorage.getItem('evaluationData');
             if (savedData) {
                 const data = JSON.parse(savedData);
                 
                 // Populate rating fields
-                if (data.adaptability_rating) {
-                    const radio = document.querySelector(`input[name="adaptability_rating"][value="${data.adaptability_rating}"]`);
-                    if (radio) radio.checked = true;
-                }
-                if (data.quality_rating) {
-                    const radio = document.querySelector(`input[name="quality_rating"][value="${data.quality_rating}"]`);
-                    if (radio) radio.checked = true;
-                }
-                if (data.responsibility_rating) {
-                    const radio = document.querySelector(`input[name="responsibility_rating"][value="${data.responsibility_rating}"]`);
-                    if (radio) radio.checked = true;
-                }
-                if (data.communication_rating) {
-                    const radio = document.querySelector(`input[name="communication_rating"][value="${data.communication_rating}"]`);
-                    if (radio) radio.checked = true;
-                }
-                if (data.leadership_rating) {
-                    const radio = document.querySelector(`input[name="leadership_rating"][value="${data.leadership_rating}"]`);
-                    if (radio) radio.checked = true;
-                }
-                if (data.documentation_rating) {
-                    const radio = document.querySelector(`input[name="documentation_rating"][value="${data.documentation_rating}"]`);
-                    if (radio) radio.checked = true;
-                }
-                if (data.negotiation_rating) {
-                    const radio = document.querySelector(`input[name="negotiation_rating"][value="${data.negotiation_rating}"]`);
-                    if (radio) radio.checked = true;
-                }
-                if (data.english_rating) {
-                    const radio = document.querySelector(`input[name="english_rating"][value="${data.english_rating}"]`);
-                    if (radio) radio.checked = true;
-                }
+                setRatingValue('adaptability_rating', data.adaptability_rating);
+                setRatingValue('quality_rating', data.quality_rating);
+                setRatingValue('responsibility_rating', data.responsibility_rating);
+                setRatingValue('communication_rating', data.communication_rating);
+                setRatingValue('leadership_rating', data.leadership_rating);
+                setRatingValue('documentation_rating', data.documentation_rating);
+                setRatingValue('negotiation_rating', data.negotiation_rating);
+                setRatingValue('english_rating', data.english_rating);
                 
                 // Populate form fields
                 document.getElementById('adaptability_note').value = data.adaptability_note || '';
