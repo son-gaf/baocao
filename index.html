@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Đánh Giá</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Báo Cáo Đánh Giá</h1>
+            <p class="subtitle">Biểu mẫu đánh giá và kế hoạch cá nhân</p>
+        </header>
+
+        <main>
+            <form id="evaluationForm">
+                <!-- Adaptability Note -->
+                <div class="form-group">
+                    <label for="adaptability_note">
+                        <span class="label-icon">🔄</span>
+                        Khả năng thích ứng (Adaptability Note)
+                    </label>
+                    <textarea id="adaptability_note" name="adaptability_note" rows="4" placeholder="Nhập đánh giá về khả năng thích ứng..."></textarea>
+                </div>
+
+                <!-- Quality Note -->
+                <div class="form-group">
+                    <label for="quality_note">
+                        <span class="label-icon">⭐</span>
+                        Chất lượng công việc (Quality Note)
+                    </label>
+                    <textarea id="quality_note" name="quality_note" rows="4" placeholder="Nhập đánh giá về chất lượng công việc..."></textarea>
+                </div>
+
+                <!-- Responsibility Note -->
+                <div class="form-group">
+                    <label for="responsibility_note">
+                        <span class="label-icon">✅</span>
+                        Tinh thần trách nhiệm (Responsibility Note)
+                    </label>
+                    <textarea id="responsibility_note" name="responsibility_note" rows="4" placeholder="Nhập đánh giá về tinh thần trách nhiệm..."></textarea>
+                </div>
+
+                <!-- Communication Note -->
+                <div class="form-group">
+                    <label for="communication_note">
+                        <span class="label-icon">💬</span>
+                        Kỹ năng giao tiếp (Communication Note)
+                    </label>
+                    <textarea id="communication_note" name="communication_note" rows="4" placeholder="Nhập đánh giá về kỹ năng giao tiếp..."></textarea>
+                </div>
+
+                <!-- Leadership Note -->
+                <div class="form-group">
+                    <label for="leadership_note">
+                        <span class="label-icon">👥</span>
+                        Khả năng lãnh đạo (Leadership Note)
+                    </label>
+                    <textarea id="leadership_note" name="leadership_note" rows="4" placeholder="Nhập đánh giá về khả năng lãnh đạo..."></textarea>
+                </div>
+
+                <!-- Documentation Note -->
+                <div class="form-group">
+                    <label for="documentation_note">
+                        <span class="label-icon">📝</span>
+                        Kỹ năng tài liệu hóa (Documentation Note)
+                    </label>
+                    <textarea id="documentation_note" name="documentation_note" rows="4" placeholder="Nhập đánh giá về kỹ năng tài liệu hóa..."></textarea>
+                </div>
+
+                <!-- Negotiation Note -->
+                <div class="form-group">
+                    <label for="negotiation_note">
+                        <span class="label-icon">🤝</span>
+                        Kỹ năng thương lượng (Negotiation Note)
+                    </label>
+                    <textarea id="negotiation_note" name="negotiation_note" rows="4" placeholder="Nhập đánh giá về kỹ năng thương lượng..."></textarea>
+                </div>
+
+                <!-- English Note -->
+                <div class="form-group">
+                    <label for="english_note">
+                        <span class="label-icon">🌐</span>
+                        Khả năng tiếng Anh (English Note)
+                    </label>
+                    <textarea id="english_note" name="english_note" rows="4" placeholder="Nhập đánh giá về khả năng tiếng Anh..."></textarea>
+                </div>
+
+                <!-- Summary -->
+                <div class="form-group">
+                    <label for="summary">
+                        <span class="label-icon">📋</span>
+                        Tóm tắt (Summary)
+                    </label>
+                    <textarea id="summary" name="summary" rows="4" placeholder="Nhập tóm tắt tổng quan..."></textarea>
+                </div>
+
+                <!-- Plan -->
+                <div class="form-group">
+                    <label for="plan">
+                        <span class="label-icon">📅</span>
+                        Kế hoạch (Plan)
+                    </label>
+                    <textarea id="plan" name="plan" rows="4" placeholder="Nhập kế hoạch phát triển..."></textarea>
+                </div>
+
+                <!-- Result -->
+                <div class="form-group">
+                    <label for="result">
+                        <span class="label-icon">🎯</span>
+                        Kết quả (Result)
+                    </label>
+                    <textarea id="result" name="result" rows="4" placeholder="Nhập kết quả đạt được..."></textarea>
+                </div>
+
+                <!-- Desire -->
+                <div class="form-group">
+                    <label for="desire">
+                        <span class="label-icon">💡</span>
+                        Mong muốn (Desire)
+                    </label>
+                    <textarea id="desire" name="desire" rows="4" placeholder="Nhập mong muốn trong tương lai..."></textarea>
+                </div>
+
+                <!-- Preferred Coworkers -->
+                <div class="form-group">
+                    <label for="preferredCoworkers">
+                        <span class="label-icon">👨‍💼</span>
+                        Đồng nghiệp ưa thích (Preferred Coworkers)
+                    </label>
+                    <textarea id="preferredCoworkers" name="preferredCoworkers" rows="4" placeholder="Nhập thông tin về đồng nghiệp ưa thích..."></textarea>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">
+                        <span>💾</span> Lưu dữ liệu
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="loadData()">
+                        <span>📂</span> Tải dữ liệu
+                    </button>
+                    <button type="button" class="btn btn-danger" onclick="clearForm()">
+                        <span>🗑️</span> Xóa form
+                    </button>
+                </div>
+            </form>
+
+            <!-- Display Area -->
+            <div id="dataDisplay" class="data-display">
+                <h2>Dữ liệu đã lưu</h2>
+                <pre id="jsonOutput">Chưa có dữ liệu</pre>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2024 Báo Cáo Đánh Giá - Được triển khai trên GitHub Pages</p>
+        </footer>
+    </div>
+
+    <script>
+        // Load data from localStorage when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            loadData();
+        });
+
+        // Handle form submission
+        document.getElementById('evaluationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                adaptability_note: document.getElementById('adaptability_note').value,
+                quality_note: document.getElementById('quality_note').value,
+                responsibility_note: document.getElementById('responsibility_note').value,
+                communication_note: document.getElementById('communication_note').value,
+                leadership_note: document.getElementById('leadership_note').value,
+                documentation_note: document.getElementById('documentation_note').value,
+                negotiation_note: document.getElementById('negotiation_note').value,
+                english_note: document.getElementById('english_note').value,
+                summary: document.getElementById('summary').value,
+                plan: document.getElementById('plan').value,
+                result: document.getElementById('result').value,
+                desire: document.getElementById('desire').value,
+                preferredCoworkers: document.getElementById('preferredCoworkers').value
+            };
+
+            // Save to localStorage
+            localStorage.setItem('evaluationData', JSON.stringify(formData, null, 2));
+            
+            // Display the data
+            displayData(formData);
+            
+            // Show success message
+            alert('Dữ liệu đã được lưu thành công!');
+        });
+
+        function loadData() {
+            const savedData = localStorage.getItem('evaluationData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                
+                // Populate form fields
+                document.getElementById('adaptability_note').value = data.adaptability_note || '';
+                document.getElementById('quality_note').value = data.quality_note || '';
+                document.getElementById('responsibility_note').value = data.responsibility_note || '';
+                document.getElementById('communication_note').value = data.communication_note || '';
+                document.getElementById('leadership_note').value = data.leadership_note || '';
+                document.getElementById('documentation_note').value = data.documentation_note || '';
+                document.getElementById('negotiation_note').value = data.negotiation_note || '';
+                document.getElementById('english_note').value = data.english_note || '';
+                document.getElementById('summary').value = data.summary || '';
+                document.getElementById('plan').value = data.plan || '';
+                document.getElementById('result').value = data.result || '';
+                document.getElementById('desire').value = data.desire || '';
+                document.getElementById('preferredCoworkers').value = data.preferredCoworkers || '';
+                
+                // Display the data
+                displayData(data);
+            }
+        }
+
+        function displayData(data) {
+            document.getElementById('jsonOutput').textContent = JSON.stringify(data, null, 2);
+        }
+
+        function clearForm() {
+            if (confirm('Bạn có chắc muốn xóa toàn bộ form?')) {
+                document.getElementById('evaluationForm').reset();
+                localStorage.removeItem('evaluationData');
+                document.getElementById('jsonOutput').textContent = 'Chưa có dữ liệu';
+            }
+        }
+    </script>
+</body>
+</html>
